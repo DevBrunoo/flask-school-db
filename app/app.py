@@ -1,18 +1,12 @@
 from flask import Flask, jsonify, request, render_template
 import sqlite3
-import os, sys
-
+import os
 
 app = Flask(__name__)
 
-# Função para conectar ao banco de dados
-
-
-def get_db():
-    db = sqlite3.connect(DATABASE)
-    db.row_factory = sqlite3.Row
-    return db
-
+# Define o caminho do arquivo de banco de dados
+DATABASE = os.path.join(os.getcwd(), "school.db")
+DATABASE = 'school.db'
 
 # Função para conectar ao banco de dados
 def get_db():
@@ -20,38 +14,27 @@ def get_db():
     db.row_factory = sqlite3.Row
     return db
 
-@app.route('/home')
-def my_home():
-    # seu código aqui
-    return "Hello World"
-
-
-
-# Função para criar o banco de dados
-
-
+# Rota principal
 @app.route('/')
 def home():
     return render_template("homepage.html")
 
+# Função para criar o banco de dados
 def create_db():
-    db = get_db()
-    with app.open_resource('escola.sql', mode='r') as f:
-        db.cursor().executescript(f.read())
-    db.commit()
-    db.close()
+    with app.app_context():
+        db = get_db()
+        with app.open_resource('escola.sql', mode='r') as f:
+            db.cursor().executescript(f.read())
+        db.commit()
+        db.close()
 
 # Rota para criar o banco de dados
-
-
-@app.route('/create_db', methods=['GET'])
+@app.route('/create_db', methods=['POST'])
 def create_database():
     create_db()
     return jsonify({'message': 'Database created successfully!'})
 
 # Rota para cadastrar uma nova turma
-
-
 @app.route('/turmas', methods=['POST'])
 def criar_turma():
     data = request.get_json()
@@ -78,10 +61,13 @@ def criar_turma():
 def criar_aluno():
     data = request.get_json()
     nome = data['nome']
-    matricula = data['matricula']
+    matricula = data.get('matricula')
+    turma_id = data['turma_id']
+    if not matricula:  # Verifica se matricula é None ou vazio
+        return jsonify({'erro': 'O campo matricula é obrigatório'}), 400
     db = get_db()
-    aluno_id = db.execute('INSERT INTO alunos (nome, matricula) VALUES (?, ?)',
-                          (nome, matricula)).lastrowid
+    db.execute('INSERT INTO alunos (nome, matricula, turma_id) VALUES (?, ?, ?)',
+               (nome, matricula, turma_id))
     db.commit()
     db.close()
     return jsonify({'message': 'Aluno criado com sucesso!'})
@@ -92,8 +78,8 @@ def criar_disciplina():
     data = request.get_json()
     nome = data['nome']
     db = get_db()
-    disciplina_id = db.execute('INSERT INTO disciplinas (nome) VALUES (?)',
-                               (nome,)).lastrowid
+    db.execute('INSERT INTO disciplinas (nome) VALUES (?)',
+               (nome,))
     db.commit()
     db.close()
     return jsonify({'message': 'Disciplina criada com sucesso!'})
@@ -105,6 +91,8 @@ def criar_professor():
     nome = data['nome']
     disciplinas = data['disciplinas']
     db = get_db()
+   
+
     professor_id = db.execute('INSERT INTO professores (nome) VALUES (?)',
                               (nome,)).lastrowid
     for disciplina in disciplinas:
