@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, request
 import sqlite3
+import os, sys
+
 
 app = Flask(__name__)
 
@@ -16,6 +18,10 @@ def get_db():
 
 # Função para criar o banco de dados
 
+
+@app.route('/')
+def home():
+    return render_template("homepage.html")
 
 def create_db():
     db = get_db()

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+    <link href="./static/carousel.css" rel="stylesheet">
+  </head>
+<body>
+  {% include 'header.html' %}
+  {% block content %}
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://i.ibb.co/KVcdM77/Design-sem-nome-17.png
+        " class="d-block w-100" alt="First one">
+        <div class="carousel-caption">
+          <h3 class="h3-hp-1">Time lasts a long time for those who know how to take advantage of it. Leonardo da Vinci</h3>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://i.ibb.co/hsGgf8P/Design-sem-nome-19.png
+        " class="d-block w-100" alt="Two">
+        <div class="carousel-caption carrousel-text-myhp">
+          <h3 class="h3-hp-2">Take advantage of all the opportunities in your life, because when they pass, they take a long time to return. Paulo Coelho</h3>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://i.ibb.co/1Mjdk7x/Design-sem-nome-18.png
+        " class="d-block w-100" alt="three">
+        <div class="carousel-caption">
+          <h3 class="h3-hp-3">This is a site created 100% for you to value your time.</h3>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+ 
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-lg-4">
+      <svg style="margin-left:20%" class="bd-placeholder-img rounded-circle" width="210" height="210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/>
+        <image class="img_hp" href="https://i.ibb.co/5jH2rW8/Captura-de-Tela-2022-12-05-a-s-20-35-35.png">
+      </svg>
+      <br>
+      <br>
+
+      <h2 class="h2_HP">Pitagoras</h2>
+      <p class="p_HP">With organization and time, one finds the secret of doing everything and doing it well.</p>      <p class="pb_HP">
+      <a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <svg style="margin-left:20%" class="bd-placeholder-img rounded-circle" width="210" height="210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/>
+        <image class="img_hp" href="https://i.ibb.co/q0pGM61/Captura-de-Tela-2022-12-05-a-s-20-31-56.png">
+      </svg>
+      <br>
+      <br>
+
+      <h2 class="h2_HP">Sophia</h2>
+      <p class="p_HP"> Saudade is what makes things stop in time.</p>      <p class="pb_HP">
+      <a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <svg style="margin-left:10%" class="bd-placeholder-img rounded-circle" width="210" height="210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/>
+        <image class="img_hp" href="https://i.ibb.co/CW17tN6/Captura-de-Tela-2022-12-05-a-s-20-38-47.png">
+      </svg>
+      <br>
+      <br>
+
+      <h2 class="h2_HP3">Hidetaka</h2>
+      <p class="p_HP3">If you don't know where you're going, any road will take you there.</p>      
+      <p class="pb_HP"><a id="a_hp3" class="btn btn-secondary" href="#">View details &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+  </div><!-- /.row -->
+
+
+  <!-- START THE FEATURETTES -->
+  <!-- Fola de estilo  -->
+  
+
+  
+  <hr class="featurette-divider">   
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Relativity. <span class="text-muted"></span></h2>
+      <p class="lead">The passage of time is faster for your face than it is for your feet (assuming you're standing). Einstein's theory of relativity states that the closer you are to the center of the Earth, the slower time will pass - and this has been measured. For example, at the top of Mount Everest, a year is about 15 microseconds shorter than at sea level.</p>
+    </div>
+    <div class="col-md-5">
+
+      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <image href="https://i.ibb.co/X8dh3rm/Design-sem-nome-20.png" width="500" height="500">
+      </svg>
+
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7 order-md-2">
+      <h2 class="featurette-heading">What is time management?. <span class="text-muted"></span></h2>
+      <p style="margin-right: 3%;" class="lead">"Focusing on something other than physical activity makes time go by faster," says Suzy. In this sense, the psychologist recommends that you create a selection of useful audiobooks or videos (things for work or studies) to listen to and watch at the gym. "You can put everything on your smartphone and customize this period in a productive way. The goal of paying attention to what's in your ears makes you more active in the whole process, you even exercise better", she says.</p>
+    </div>
+    <div class="col-md-5 order-md-1">
+
+      <svg style="margin-left:20%" class="" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <image  href="https://i.ibb.co/JH0zWYS/Design-sem-nome-21.png" width="500" height="500">
+      </svg> <!-- Apaguei a ordem class dele e editei o estilo via linhas de tag -->
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">What is time management?. <span class="text-muted"></span></h2>
+      <p class="lead">Time management is knowing how to enjoy 100% of every moment. When you are on working hours, WORK! When you are out of these hours, ENJOY intensely with your family, friends and sometimes allow yourself to donate time just for you.</p>
+    </div>
+    <div class="col-md-5">
+
+      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <image href="https://i.ibb.co/4M0fsrd/Design-sem-nome-22.png" width="500" height="500">
+      </svg>
+
+
+    </div>
+  </div>
+  <br>
+
+
+  <!-- /END THE FEATURETTES -->
+
+</div><!-- /.container -->
+
+
+
+
+
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+  
+  {% endblock %}
+  {% include 'footer.html' %}  
+</body>
+</html>
