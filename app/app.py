@@ -1,12 +1,9 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import sqlite3
 import os, sys
 
 
 app = Flask(__name__)
-
-# Configuração do banco de dados
-DATABASE = 'escola.db'
 
 # Função para conectar ao banco de dados
 
@@ -15,6 +12,20 @@ def get_db():
     db = sqlite3.connect(DATABASE)
     db.row_factory = sqlite3.Row
     return db
+
+
+# Função para conectar ao banco de dados
+def get_db():
+    db = sqlite3.connect(DATABASE)
+    db.row_factory = sqlite3.Row
+    return db
+
+@app.route('/home')
+def my_home():
+    # seu código aqui
+    return "Hello World"
+
+
 
 # Função para criar o banco de dados
 
@@ -63,8 +74,6 @@ def criar_turma():
     return jsonify({'message': 'Turma criada com sucesso!'})
 
 # Rota para cadastrar um novo aluno
-
-
 @app.route('/alunos', methods=['POST'])
 def criar_aluno():
     data = request.get_json()
@@ -78,8 +87,6 @@ def criar_aluno():
     return jsonify({'message': 'Aluno criado com sucesso!'})
 
 # Rota para cadastrar uma nova disciplina
-
-
 @app.route('/disciplinas', methods=['POST'])
 def criar_disciplina():
     data = request.get_json()
@@ -92,8 +99,6 @@ def criar_disciplina():
     return jsonify({'message': 'Disciplina criada com sucesso!'})
 
 # Rota para cadastrar um novo professor
-
-
 @app.route('/professores', methods=['POST'])
 def criar_professor():
     data = request.get_json()
@@ -103,13 +108,14 @@ def criar_professor():
     professor_id = db.execute('INSERT INTO professores (nome) VALUES (?)',
                               (nome,)).lastrowid
     for disciplina in disciplinas:
-      db.execute('INSERT INTO professor_disciplinas (professor_id, disciplina_id) VALUES (?, ?)',
-    (professor_id, disciplina))
+        db.execute('INSERT INTO professor_disciplinas (professor_id, disciplina_id) VALUES (?, ?)',
+                   (professor_id, disciplina))
     db.commit()
     db.close()
     return jsonify({'message': 'Professor criado com sucesso!'})
 
-@app.route('/alunos/int:aluno_id', methods=['DELETE'])
+# Rota para remover um aluno
+@app.route('/alunos/<int:aluno_id>', methods=['DELETE'])
 def remover_aluno(aluno_id):
     db = get_db()
     db.execute('DELETE FROM turma_alunos WHERE aluno_id = ?', (aluno_id,))
@@ -118,15 +124,15 @@ def remover_aluno(aluno_id):
     db.close()
     return jsonify({'message': 'Aluno removido com sucesso!'})
 
-@app.route('/professores/int:professor_id', methods=['DELETE'])
+# Rota para remover um professor
+@app.route('/professores/<int:professor_id>', methods=['DELETE'])
 def remover_professor(professor_id):
     db = get_db()
-    db.execute(
-    'DELETE FROM professor_disciplinas WHERE professor_id = ?', (professor_id,))
+    db.execute('DELETE FROM professor_disciplinas WHERE professor_id = ?', (professor_id,))
     db.execute('DELETE FROM professores WHERE id = ?', (professor_id,))
     db.commit()
     db.close()
     return jsonify({'message': 'Professor removido com sucesso!'})
 
-    if name == 'main':
-     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
